@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.hos.dao.DoctorsMapper">
+	<resultMap type="com.hos.bean.Tempsper" id="Tem">
+		<id property="doid" column="doid"/>
+  		<id property="time" column="time"/>
+		<result property="doname" column="doname"/>
+		<result property="title" column="title"/>
+		<result property="info" column="info"/>
+		<result property="deid" column="deid"/>
+		<result property="dename" column="dename"/>
+		<result property="bcost" column="bcost"/>
+		<result property="am1" column="am1"/>
+		<result property="am2" column="am2"/>
+		<result property="am3" column="am3"/>
+		<result property="am4" column="am4"/>
+		<result property="am5" column="am5"/>
+		<result property="am6" column="am6"/>
+		<result property="am7" column="am7"/>
+		<result property="pm1" column="pm1"/>
+		<result property="pm2" column="pm2"/>
+		<result property="pm3" column="pm3"/>
+		<result property="pm4" column="pm4"/>
+		<result property="pm5" column="pm5"/>
+		<result property="pm6" column="pm6"/>
+		<result property="pm7" column="pm7"/>
+		<result property="sum1" column="sum1"/>
+		<result property="sum2" column="sum2"/>
+		<result property="sum3" column="sum3"/>
+		<result property="sum4" column="sum4"/>
+		<result property="sum5" column="sum5"/>
+		<result property="sum6" column="sum6"/>
+		<result property="sum7" column="sum7"/>
+		<result property="num1" column="num1"/>
+		<result property="num2" column="num2"/>
+		<result property="num3" column="num3"/>
+		<result property="num4" column="num4"/>
+		<result property="num5" column="num5"/>
+		<result property="num6" column="num6"/>
+		<result property="num7" column="num7"/>
+		<result property="sump1" column="sump1"/>
+		<result property="sump2" column="sump2"/>
+		<result property="sump3" column="sump3"/>
+		<result property="sump4" column="sump4"/>
+		<result property="sump5" column="sump5"/>
+		<result property="sump6" column="sump6"/>
+		<result property="sump7" column="sump7"/>
+		<result property="nump1" column="nump1"/>
+		<result property="nump2" column="nump2"/>
+		<result property="nump3" column="nump3"/>
+		<result property="nump4" column="nump4"/>
+		<result property="nump5" column="nump5"/>
+		<result property="nump6" column="nump6"/>
+		<result property="nump7" column="nump7"/>
+		<result property="date1" column="date1"/>	
+		<result property="date2" column="date2"/>
+		<result property="date3" column="date3"/>
+		<result property="date4" column="date4"/>
+		<result property="date5" column="date5"/>
+		<result property="date6" column="date6"/>
+		<result property="date7" column="date7"/>
+	</resultMap>	
+	<select id="findlist" resultMap="Tem">
+	select distinct do.doid, do.doname, do.title,do.info，do.bcost ,de.deid,de.dename,
+	 <foreach collection="lists" separator="," item="item" index="index">
+	#{item} date${index+1} ,
+	(select decode(count(*), 0, 0, 1) from BOOKABLE where doid = do.doid and starttime = -1 and bdate =  to_date(#{item}, 'yyyy-MM-dd')) AM${index+1},
+	(select decode(count(*), 0, 0, 1) from BOOKABLE where doid = do.doid and starttime = 1 and bdate =  to_date(#{item}, 'yyyy-MM-dd')) PM${index+1},
+	(select nvl(sum(bnum),0) from bookable where doid = do.doid and bdate =  to_date(#{item}, 'yyyy-MM-dd') and starttime  =  -1  ) sum${index+1},
+	(select nvl(sum(ynum),0) from bookable where doid = do.doid and bdate =  to_date(#{item}, 'yyyy-MM-dd') and starttime   = -1  ) num${index+1},
+	(select nvl(sum(bnum),0) from bookable where doid = do.doid and bdate =  to_date(#{item}, 'yyyy-MM-dd') and starttime  = 1) sump${index+1},
+	(select nvl(sum(ynum),0) from bookable where doid = do.doid and bdate =  to_date(#{item}, 'yyyy-MM-dd') and starttime  = 1) nump${index+1}
+	</foreach>
+	from doctors do, departs de, bookable b
+	where de.deid = do.deid and b.doid = do.doid and do.doexist = 1 and do.deid = #{deid}
+	order by do.doid
+	</select>
+	
+	
+	<resultMap type="com.hos.bean.Reservation" id="Reser">
+	<id column="red" property="red"/>
+	<result column="state" property="state"/>
+	
+	<association property="bookable" javaType="com.hos.bean.Bookable">
+	<id column="bid" property="bid"/>
+	<result column="bdate" property="bdate"/>
+	<result column="starttime" property="starttime"/>
+	
+	<association property="doctors" javaType="com.hos.bean.Doctors">
+	<id column="doid" property="doid"/>
+	<result column="doname" property="doname"/>
+	<result column="title" property="title"/>
+	<result column="bcost" property="bcost"/>
+	
+	<association property="departs" javaType="com.hos.bean.Departs">
+	<id column="deid" property="deid"/>
+	<result column="dename" property="dename"/>
+
+	</association>
+	</association>
+	</association>
+	
+	<association property="patients" javaType="com.hos.bean.Patients">
+	<id column="pid" property="pid"/>
+	</association>
+	
+	</resultMap>
+	
+	<select id="findRes" resultMap="Reser">
+	 select red,r.state,b.bid,b.bdate,d.doid,d.doname,d.title,d.bcost ,de.deid,de.dename, b.starttime 
+		from reservation r,patients p ,bookable b ,doctors d 
+     , departs de where d.deid=de.deid and r.pid=p.pid and r.bid=b.bid and b.doid=d.doid and p.pid=#{pid}
+	order by b.bdate desc
+	
+	</select>
+	
+	
+	<resultMap type="com.hos.bean.Bookable" id="Booka">
+	<id property="bid" column="bid"/>
+	<result column="bdate" property="bdate"/>
+	<result column="starttime" property="starttime"/>
+	<association property="doctors" javaType="com.hos.bean.Doctors">
+	<id column="doid" property="doid"/>
+	<result column="doname" property="doname"/>
+	<result column="title" property="title"/>
+	<result column="bcost" property="bcost"/>
+	<association property="departs" javaType="com.hos.bean.Departs">
+	<id column="deid" property="deid"/>
+	<result column="dename" property="dename"/>
+	</association>
+	
+	</association>
+	
+	
+	</resultMap>
+	
+	
+	<select id="findble"  resultMap="Booka"> 
+	   select bid,bdate,starttime ,do.doid,doname,dename,title,bcost,de.deid from bookable bo ,doctors do,departs
+	    de where bo.doid=do.doid and do.deid=de.deid
+	and do.doid =#{doid} and to_char(bdate,'yyyy-MM-dd') = #{date} and  starttime=#{starttime}	
+	</select>
+	
+	
+	
+	
+	
+</mapper>
