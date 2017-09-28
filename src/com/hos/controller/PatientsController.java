@@ -91,11 +91,12 @@ public class PatientsController {
 				return "redirect:/index.jsp";
 			}
 		}
-		return "redirect:/register1.jsp";
+		return "redirect:/register.jsp";
 	}
 
 	// 注册时失去焦点事件查询身份证是否注册过
 	@RequestMapping("patients2_cardyz")
+	@ResponseBody
 	public void patients2_cardyz(@RequestParam("idcard") String idcard, HttpServletResponse httpServletResponse) {
 
 		boolean fals = false;
@@ -121,6 +122,7 @@ public class PatientsController {
 
 	// 注册时失去焦点事件查询手机号码是否注册过
 	@RequestMapping("patients2_phoneyz")
+	@ResponseBody
 	public void patients2_phoneyz(@RequestParam("phone") String phone, HttpServletResponse httpServletResponse) {
 		boolean fals = false;
 		PrintWriter out = null;
@@ -197,7 +199,8 @@ public class PatientsController {
 			@RequestParam("name")String name,
 			@RequestParam("dename")String dename,
 			@RequestParam("bcost")Double bcost,
-			@RequestParam("date")String date ){
+			@RequestParam("date")String date,
+			@RequestParam("starttime")Integer starttime){
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy年MM月dd日");
 		Date date1 = new Date(date);
 		date= sdf.format(date1);
@@ -208,7 +211,8 @@ public class PatientsController {
 				Patients patients = patientsService.findById(pid);
 				modelMap.put("patients", patients);
 				Emails e=new Emails();
-				e.email(email, name, dename, bcost, date);
+				System.out.println(patients.getSex());
+				e.email(email, name, dename, bcost, date,patients.getSex(),starttime);
 		}
 		
 		

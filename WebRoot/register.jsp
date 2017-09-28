@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <a class="bookingorder_a layout" href="javascript:persons(${patients.pid})">我的预约挂号 <i class="g_icon g_down"></i></a>
             </c:if>        
                 </div>	
-           
+           </div>
 		</div>
 	</div>
 	<div class="big_width clearfix">
@@ -317,7 +317,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<div class="regis_main clearfix">
 
-		<form id="ff" action="patients_add" enctype="multipart/form-data" method="post">
+		<form id="ff" action="patients_add"  method="post">
 			<input type="hidden" name="token" value="126573af-0f0b-4b91-b5fc-9039f882ea02">
 			<div class="join_b1">
 				<span>实名注册</span>
@@ -390,6 +390,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<span id="userPhoneError" style="color: red; font-size: 12px; font-weight: bold; display: none; width: 100%; height: 100%; position: absolute; left: 0; top: 0; z-index: 1000; background: #fff;"></span>
 						</div>
 					</div>
+					
+					<div class="yhm" >
+						<div class="yhm_left_name">电子邮箱：</div>
+						<div class="yhm_left_input">
+							<input id="userEmail" name="email"
+								value="" onblur="regiterManage3()"
+								maxlength=30 size=30 type="text" class="join_in" /> <input
+								id="userEmailIsRegister" value="false" type="hidden" />
+						</div>
+						<div class="yhm_left_prompt">
+							<div class="zhushi" id="userEmailErrorDiv">
+								<font class="red">*</font>请输入您的电子邮箱地址</div>
+							<span id='userEmailError'
+								style="color: red; font-size: 12px; font-weight: bold; display: none; width: 100%; height: 100%; position: absolute; left: 0; top: 0; z-index: 1000; background: #fff;"></span>
+						</div>
+					</div>
+
+					
 						<div  class="yhm">
 						<div class="yhm_left_name">性  别：</div>
 						<div class="yhm_left_input">
@@ -629,8 +647,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				url:'patients2_cardyz',
 				type: 'POST',
 				data:{"idcard":_id},
+				dataType:"json",
 				success:function(data){
-				
+					
 					if(data.suc){		
 					document.getElementById('papersNumError').innerHTML = "&nbsp;身份证已注册";
 					document.getElementById('papersNumError').style.display = "";
@@ -887,6 +906,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				url:'patients2_phoneyz',
 				type: 'POST',
 				data:{"phone":userPhoneBox},
+				dataType:"json",
 				success:function(data){
 		
 				if(data.suc){	
@@ -916,15 +936,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function regiterManage3() {
 		if (verifyemail()) {
 			var userEmailBox = document.getElementById('userEmail').value;
-
-			if (httpRequest == null) {
+			
+/* 			$.ajax({
+				url:'patients2_emailyz',
+				type: 'POST',
+				data:{"email":userEmailBox},
+				dataType:"json",
+				success:function(data){
+		
+				if(data.suc){	
+			
+					$("#userEmailError").html('&nbsp;该邮箱已经注册！');
+					$("#userEmailError").show();
+					//$("#userPhoneErrorDiv").hide();
+					$('#userEmailError').css("color", "red");
+					$("#userEmail").focus(function() {
+					$("#userEmailError").hide();
+					$("#userEmailErrorDiv").show();
+				});
+				
+					}					
+				}		
+			});	 */
+			
+			/* if (httpRequest == null) {
 				createHttpRequest();
 			}
 
 			httpRequest.onreadystatechange = transRegisterData;
 			httpRequest.open("POST", 'verifyInfo.action?param_name='
 					+ userEmailBox, true);
-			httpRequest.send(null);
+			httpRequest.send(null); */
 		}
 	}
 
@@ -1094,7 +1136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		//对电子邮件的验证
 		var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
 		if (!myreg.test(temp.value)) {
-			$("#userEmailError").html('&nbsp;请输入有效的E_mail！');
+			$("#userEmailError").html('&nbsp;请输入有效的Email地址！');
 			$("#userEmailError").show();
 			//$("#userEmailErrorDiv").hide();
 			$("#userEmail").focus(function() {

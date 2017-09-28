@@ -130,7 +130,7 @@ function times(doid,date,starttime){
 				</div>
 				<div class="schedule_zi">
 					<p>
-						<font> 湖南省人民医院</font>
+						<font> 湖南省三零一医院</font>
 						<font> ${dename}</font>
 				
 					</p>

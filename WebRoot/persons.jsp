@@ -441,7 +441,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				&nbsp; &nbsp; &nbsp;
 				<div class="confirm_tian" style="font-size: 14px">
-					您预约的医生：<a href="" class="green1"><span>湖南省人民医院 </span> </a> 
+					您预约的医生：<a href="" class="green1"><span>湖南省三零一医院 </span> </a> 
 					<a href="#" class="green1"><span> ${reg.bookable.doctors.departs.dename} </span> </a>
 					 <font class="red"><b>${reg.bookable.doctors.doname} (${reg.bookable.doctors.title})</b> </font>
 					  <br>诊金及挂号费：<font class="red"><b>${reg.bookable.doctors.bcost}元 </b> </font> 

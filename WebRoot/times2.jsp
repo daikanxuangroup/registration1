@@ -60,17 +60,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#tijiaoImage img").attr("src", "images/tijiao.jpg");
 		}
 
- 		function mediCardShow() {
+ 		function mediCardShow(idcard) {
 			$('#mediCardidType').show();
 			$('#mediCardidType').show();
 			$("input[type='hidden'][name='val']").val("2");
 			$("#tijiaoImage img").attr("src", "images/tijiao_hui.jpg");
+			verifyMediCardid(idcard);
 			var paymode = $("input[type='hidden'][name='ordermode']").val();
 			if (paymode.indexOf("1") > -1) {
 				$("input[type='radio'][name='payType'][value='2']").attr(
 						"checked", "true");
 				$("#mediCardidType").show();
 			}
+			
 		}
 		 
 		
@@ -78,100 +80,74 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 		function verifyMediCardid(idcard){
 		
-			var cid=$("#ccdd").val();			
-			$.ajax({
+			var cid=$("#ccdd").val();	
+			if(cid !='' && cid!=null){
+				$.ajax({
 			
-				url:'tempcards',
-				type: 'POST',
-				data:{"cid":cid,"idcard":idcard},
-				success:function(data){
-				if(data=="meiyou"){				
-				document.getElementById('errorMediCardid').innerHTML = "您输入的诊疗卡不存在";
-				}else if(data==""){
-				document.getElementById('errorMediCardid').innerHTML = "您输入的身份证不匹配";
-				}else{
-					document.getElementById('errorMediCardid').innerHTML = "";
-				}
-				
-				
-				
-			 
-				}	
-			});
+					url:'tempcards',
+					type: 'POST',
+					data:{"cid":cid,"idcard":idcard},
+					success:function(data){
+						if(data=="meiyou"){				
+						document.getElementById('errorMediCardid').innerHTML = "您输入的诊疗卡不存在";
+						}else if(data==""){
+						document.getElementById('errorMediCardid').innerHTML = "该诊疗卡与您的身份信息不匹配";
+						}else{
+							document.getElementById('errorMediCardid').innerHTML = "";
+						}
+					
+					}	
+				});
+			}else{
+				document.getElementById('errorMediCardid').innerHTML = "请填写您的诊疗卡号";
+			}
+			
 			
 				
 		}
-function tijiao(bid,pid,email,name,dename,bcost,date){
+function tijiao(bid,pid,email,name,dename,bcost,date,starttime){
+	/* alert(document.getElementById('errorMediCardid').innerHTML); */
+	var msg = document.getElementById('errorMediCardid').innerHTML;
+	var temp=document.getElementsByName("payType");
 	
-	layer.confirm('您确认好了吗？',function(index){
-		var cid=$("#ccdd").val();	
-		var temp=document.getElementsByName("payType");
-
- 		for(var i=0;i<temp.length;i++){
-		 if(temp[i].checked){
-		 var payType=temp[i].value; 
+ 	for(var i=0;i<temp.length;i++){
+	 if(temp[i].checked){
+		var payType=temp[i].value; 
 		var payType=i+1;
-		 break;
-		 
-		 }
-		
-		}
-		if( payType==2){
-		 medcard = cid;
-		}else{
-		var	medcard="";
-		}
-		
-	$.ajax({		
-			url:'doctorsBus',
-			type: 'POST',
-			data:{"pid":pid,"bid":bid,"medcard":medcard,"email":email,"name":name,"dename":dename,"bcost":bcost,"date":date},
-			success:function(data){
-			if(data=="true"){
+		break;
+	 }
+	}
+	if(msg==''||payType==1){
+		layer.confirm('您确认好了吗？',function(index){
+			var cid=$("#ccdd").val();	
 			
-			layer.msg('预约成功请到个人中心查看!',{icon:1,time:1000});
-				setTimeout(function () {
-				window.location.href="index.jsp";
-				
-				},1200);
-				
-				}		
-			}
-		}); 
-		layer.close(index);	
-	});	
-	/* 
-	if(confirm("你确认好了吗")){
-		var cid=$("#ccdd").val();	
-		var temp=document.getElementsByName("payType");
-
- 		for(var i=0;i<temp.length;i++){
-		 if(temp[i].checked){
-		 var payType=temp[i].value; 
-		var payType=i+1;
-		 break;
-		 
-		 }
-		
-		 }
-		if( payType==2){
-		 medcard = cid;
-		}else{
-		var	medcard="";
-		}
-		
-	$.ajax({		
-			url:'doctorsBus',
-			type: 'POST',
-			data:{"pid":pid,"bid":bid,"medcard":medcard},
-			success:function(data){
-			if(data=="true"){
-				alert("预约成功请到个人中心查看");
+			if( payType==2){
+				medcard = cid;
+			}else{
+				var	medcard="";
 			}
 			
-			}
-		});  
-	}*/
+		$.ajax({		
+				url:'doctorsBus',
+				type: 'POST',
+				data:{"pid":pid,"bid":bid,"medcard":medcard,"email":email,"name":name,"dename":dename,"bcost":bcost,"date":date,"starttime":starttime},
+				success:function(data){
+				if(data=="true"){
+				
+				layer.msg('预约成功，请在个人中心查看！',{icon:1,time:1000});
+					setTimeout(function () {
+					window.location.href="index.jsp";
+					
+					},1200);
+					
+					}		
+				}
+			}); 
+			layer.close(index);	
+		});	
+	}else{
+		layer.alert(msg);
+	}
 }
     
     
@@ -260,8 +236,8 @@ function tijiao(bid,pid,email,name,dename,bcost,date){
 				&nbsp; &nbsp; &nbsp;
 				<div class="confirm_tian" style="font-size: 14px">
 					预约就诊时间: &nbsp;<font class="red"><fmt:formatDate value="${bookable.bdate}" type="date" pattern="yyyy-MM-dd"/>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  取号时间: ${bookable.starttime eq 1 ?'13:00-15:00':'9:00-11:00'}   </font><br>
-					湖南人民医院: &nbsp;(<span style="color: red;">${bookable.doctors.departs.dename}</span>)<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  取号时间: ${bookable.starttime eq 1 ?'13:30-15:00':'8:00-11:00'}   </font><br>
+					湖南三零一医院: &nbsp; <span style="color: red;">${bookable.doctors.departs.dename}</span><br>
 					您预约的医生: &nbsp;${bookable.doctors.doname}(<span style="color: red;">${bookable.doctors.title}</span>)<br>
 					诊金及挂号费: &nbsp;<font class="red">${bookable.doctors.bcost}元</font> <font class="hui"> 诊疗费用以医院现场收取为准！</font><br>
 				</div>				
@@ -286,10 +262,10 @@ function tijiao(bid,pid,email,name,dename,bcost,date){
 						<li>
 								<input type="radio" checked="checked" name="payType" id="payType" onclick="mediCardHide()" value="1">无卡预约&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							 
-								<input type="radio" name="payType" id="payType" onclick="mediCardShow()" value="2" checked="checked">有卡预约&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="payType" id="payType" onclick="mediCardShow('${patients.idcard}')" value="2" >有卡预约&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							</li>
 						<li>
-							<div id="mediCardidType" style="display: block;">
+							<div id="mediCardidType" style="display: none;">
 								<div class="DiagnosisCard">
 									<label> 请填写诊疗卡：</label>
 									<input name="orderwebOrder.mediCardid" id="ccdd" type="text" value="${patients.by1}" onblur="verifyMediCardid('${patients.idcard}')">
@@ -314,7 +290,8 @@ function tijiao(bid,pid,email,name,dename,bcost,date){
 				</div>
 				<div class="message_tijiao">
 					<a href="#" onclick="history.back();return false;" class="button">上一步</a>
-					<a  href="javascript:tijiao(${bookable.bid},${patients.pid},'${patients.email}','${patients.pname}','${bookable.doctors.departs.dename}',${bookable.doctors.bcost},'${bookable.bdate}')" class="button"> 提交 </a>
+					<a  href="javascript:tijiao(${bookable.bid},${patients.pid},'${patients.email}','${patients.pname}','${bookable.doctors.departs.dename}'
+					 ,${bookable.doctors.bcost},'${bookable.bdate}',${bookable.starttime })" class="button"> 提交 </a>
 				</div>
 			</div>
 			
@@ -423,8 +400,8 @@ function tijiao(bid,pid,email,name,dename,bcost,date){
 			<div class="notice_con">
 				<p id="cmsText"></p>
 				<div style="font-size: 16px; color: red; font-weight: bolder">
-					 湖南省人民医院 预约须知：
-					<li>按 湖南省人民医院 院规定，严格执行实名制预约，
+					 湖南省三零一医院 预约须知：
+					<li>按 湖南省三零一医院 院规定，严格执行实名制预约，
 					用户必须上传本人真实身份证原件至预约平台进行审核，
 					请尽快到平台“个人中心-基本信息”中上传身份证照片，未上传或审核不通过的用户将不允许预约。</li>
 				</div>
