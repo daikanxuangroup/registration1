@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javaScript">
 	function nofindLogo() {
 		var img = event.srcElement;
-		img.src = "images/logo/logo.png";
+		img.src = "images/logo/logo.jpg";
 		img.onerror = null;
 	}
 	function nofindHeader_bg() {
@@ -138,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="big_width clearfix">
 		<div class="logo">
-			<img src="${pageContext.request.contextPath }/resources/image/logo.png">
+			<img src="${pageContext.request.contextPath }/resources/image/logo.jpg">
 		</div>
 
 		<div class="top_bg"></div>

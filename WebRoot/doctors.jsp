@@ -96,7 +96,7 @@ function times(doid,date,starttime){
 	</div>
 	<div class="big_width clearfix">
 		<div class="logo">
-			<img src="${pageContext.request.contextPath }/resources/image/logo.png">
+			<img src="${pageContext.request.contextPath }/resources/image/logo.jpg">
 		</div>
 
 		<div class="top_bg"></div>

@@ -96,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="big_width clearfix">
 		<div class="logo">
-			<img src="${pageContext.request.contextPath }/resources/image/logo.png">
+			<img src="${pageContext.request.contextPath }/resources/image/logo.jpg">
 		</div>
 
 		<div class="top_bg"></div>
@@ -393,7 +393,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div  class="yhm">
 						<div class="yhm_left_name">性  别：</div>
 						<div class="yhm_left_input">
-							<input id="userSex" name="sex" type="radio" value="男" checked="" >男 <input id="userSex" name="patients.sex" type="radio" value="女" >女
+							<input id="userSex" name="sex" type="radio" value="男" checked="" >男 
+							<input id="userSex" name="sex" type="radio" value="女" >女
 						</div>
 				
 					</div>		 
