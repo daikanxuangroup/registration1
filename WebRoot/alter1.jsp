@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="header">
 	<div class="top">
 		<div class="top_right">
-			<div class="welcome">您好，欢迎来到湖南省统一预约挂号服务平台！&nbsp;&nbsp;&nbsp;&nbsp;</div>          	
+			<div class="welcome">您好，欢迎来到301医院统一预约挂号服务平台！&nbsp;&nbsp;&nbsp;&nbsp;</div>          	
             <div class="fr"></div>              
 			<!--end add advise function module by liqin at 2015-05-08-->
            
@@ -124,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="bottom">
   <div class="bottom">
     <div class="bottom_left">
-      <p>湖南省统一预约挂号服务平台</p>
+      <p>301医院统一预约挂号服务平台</p>
       <p>
         <a href="http://www.hnyygh.com/getArticleList_guide.action?articleId=About_us&amp;channelId=105&amp;contentPath=" target="_parent" style="white-space: nowrap; width: 50px">关于我们</a>
         |
@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         |
         <a href="http://www.hnyygh.com/getArticleList_guide.action?articleId=Contact_us&amp;channelId=105&amp;contentPath=" target="_parent" style="white-space: nowrap; width: 50px">联系我们</a>
       </p>
-      <p>技术支持：湖南凯歌医疗信息技术有限公司</p>
+      <p>技术支持：湖南三零一医疗信息技术有限公司</p>
       <p>联系电话：<font color="red"><strong>400 9918 580</strong></font> &nbsp;&nbsp;&nbsp;&nbsp; 湘ICP备14005311号-1</p>
     </div>
 </div>

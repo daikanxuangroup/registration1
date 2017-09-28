@@ -197,7 +197,7 @@ function tijiao(bid,pid,email,name,dename,bcost,date){
 	<div class="top">
 	
 		<div class="top_right">
-			<div class="welcome">您好，欢迎来到湖南省统一预约挂号服务平台！&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<div class="welcome">您好，欢迎来到301医院统一预约挂号服务平台！&nbsp;&nbsp;&nbsp;&nbsp;</div>
              	
             <div class="fr">
 				
@@ -325,7 +325,7 @@ function tijiao(bid,pid,email,name,dename,bcost,date){
 		 医院温馨提示：
 						<li>预约时，须填报就诊患者本人的真实姓名和身份证号（新生儿如无身份证则填写父母一方的身份证），请务必确保信息内容的真实性，如发现有误按废号处理。</li>
 						<li>可预约次天起一个星期内的诊号，每个人当天每个科室只能预约一个号。 </li>
-						<li>请按预约时间提前到医院门诊大厅任意挂号收费窗口或5号6号自助机取号候诊，上午11点之前取号，下午15点之前取号,过时预约无效。</li> 
+						<li>请按预约时间提前到医院门诊大厅任意挂号收费窗口取号候诊，上午11点之前取号，下午15点之前取号,过时预约无效。</li> 
 						<li>系统采用实名制挂号，如出现两次挂号未到现场取号，系统默认取消其以后预约资格。</li>
 		
 		</div>
@@ -354,7 +354,7 @@ function tijiao(bid,pid,email,name,dename,bcost,date){
 <div id="bottom">
   <div class="bottom">
     <div class="bottom_left">
-      <p>湖南省统一预约挂号服务平台</p>
+      <p>301医院统一预约挂号服务平台</p>
       <p>
         <a href="http://www.hnyygh.com/getArticleList_guide.action?articleId=About_us&amp;channelId=105&amp;contentPath=" target="_parent" style="white-space: nowrap; width: 50px">关于我们</a>
         |
@@ -364,7 +364,7 @@ function tijiao(bid,pid,email,name,dename,bcost,date){
         |
         <a href="http://www.hnyygh.com/getArticleList_guide.action?articleId=Contact_us&amp;channelId=105&amp;contentPath=" target="_parent" style="white-space: nowrap; width: 50px">联系我们</a>
       </p>
-      <p>技术支持：湖南凯歌医疗信息技术有限公司</p>
+      <p>技术支持：湖南三零一医疗信息技术有限公司</p>
       <p>联系电话：<font color="red"><strong>400 9918 580</strong></font> &nbsp;&nbsp;&nbsp;&nbsp; 湘ICP备14005311号-1</p>
     </div>
    <!-- <div class="bottom_right">

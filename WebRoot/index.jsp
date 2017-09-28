@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="top">
 	
 		<div class="top_right">
-			<div class="welcome">您好，欢迎来到湖南省统一预约挂号服务平台！&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<div class="welcome">您好，欢迎来到301医院统一预约挂号服务平台！&nbsp;&nbsp;&nbsp;&nbsp;</div>
              	
             <div class="fr">	
            
@@ -177,17 +177,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="jieshao_zi">
 						<p>
-							<font> 湖南省人民医院 </font> 
+							<font> 湖南省三零一医院 </font> 
 						</p>
 						<p>
 							<i>医院等级：</i>三级甲等</p>
 						<p>
 							<i> 联系电话：</i>0731-85600973
 							</p><p>
-								<i>联系地址：</i>湖南省长沙市梓园路86号
+								<i>联系地址：</i>湖南省长沙市五一广场86号
 							</p>
 							<p>
-								<i>医院网址：</i><a href="http://www.hnetyy.net/" target="blank">http://www.hnetyy.net</a>
+								<i>医院网址：</i><a href="http://www.hnetyy.net/" target="blank">http://www.301hospital.net</a>
 							</p>
 							
 							<p>
@@ -205,7 +205,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div id="starlist">
 					<p>
 						
-							 湖南省人民医院 于八五年五月十五日奠基，历两年建设之艰辛，八七年儿童节开院纳诊。医院居古城长沙闹中取静之红旗区，位梓园路86号，面湘江而眺岳麓名山。集儿童医疗，保健，康复，科研，教学于一身，97年殊荣三级甲等医院，聚世间儿科名医，悬壶三湘儿童少年，医济九州八方儿患，是年病床编制六百，占地八十多五亩，有房屋八百间，建筑面积十二万平方米，规模位国内同业第二。 世纪初年，医院再投巨资欲建湖南儿科之航母，包容儿童医疗，保健，康复，科研。自二00一至二00四年，先后装修门诊大楼，修中心实验室，兴住院大楼13000平方米，改旧住院大楼9000平方米，建两层地下停车场，铺花园广场3个，风格现代，功能齐全，置身其中，童趣盎然。                                                                                                                                                                                                                                                                                                 				
+							 湖南省三零一医院 于八五年五月十五日奠基，历两年建设之艰辛，八七年儿童节开院纳诊。医院居古城长沙闹中取静之红旗区，位梓园路86号，面湘江而眺岳麓名山。集儿童医疗，保健，康复，科研，教学于一身，97年殊荣三级甲等医院，聚世间儿科名医，悬壶三湘儿童少年，医济九州八方儿患，是年病床编制六百，占地八十多五亩，有房屋八百间，建筑面积十二万平方米，规模位国内同业第二。 世纪初年，医院再投巨资欲建湖南儿科之航母，包容儿童医疗，保健，康复，科研。自二00一至二00四年，先后装修门诊大楼，修中心实验室，兴住院大楼13000平方米，改旧住院大楼9000平方米，建两层地下停车场，铺花园广场3个，风格现代，功能齐全，置身其中，童趣盎然。                                                                                                                                                                                                                                                                                                 				
 					</p>
 					
 				</div>
@@ -282,7 +282,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="bottom">
   <div class="bottom">
     <div class="bottom_left">
-      <p>湖南省统一预约挂号服务平台</p>
+      <p>301医院统一预约挂号服务平台</p>
       <p>
         <a href="http://www.hnyygh.com/getArticleList_guide.action?articleId=About_us&amp;channelId=105&amp;contentPath=" target="_parent" style="white-space: nowrap; width: 50px">关于我们</a>
         |
@@ -292,7 +292,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         |
         <a href="http://www.hnyygh.com/getArticleList_guide.action?articleId=Contact_us&amp;channelId=105&amp;contentPath=" target="_parent" style="white-space: nowrap; width: 50px">联系我们</a>
       </p>
-      <p>技术支持：湖南凯歌医疗信息技术有限公司</p>
+      <p>技术支持：湖南三零一医疗信息技术有限公司</p>
       <p>联系电话：<font color="red"><strong>400 9918 580</strong></font> &nbsp;&nbsp;&nbsp;&nbsp; 湘ICP备14005311号-1</p>
     </div>
   </div>

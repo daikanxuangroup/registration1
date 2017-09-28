@@ -114,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="top">
 	
 		<div class="top_right">
-			<div class="welcome">您好，欢迎来到湖南省统一预约挂号服务平台！&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<div class="welcome">您好，欢迎来到301医院统一预约挂号服务平台！&nbsp;&nbsp;&nbsp;&nbsp;</div>
              	
             <div class="fr">
 			<c:choose>
@@ -436,6 +436,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<c:forEach items="${list}" var="reg">		
 				<div class="xuanze" style="font-size: 18px;">			
 					<strong >您的预约信息&nbsp;&nbsp;&nbsp;预约日期:<fmt:formatDate value="${reg.bookable.bdate}" type="date" pattern="yyyy-MM-dd"/> &nbsp;
+					${reg.bookable.starttime eq 1?'下午':'上午'}
 					&nbsp;  <span style="color: red;">  ${reg.state eq 1?'未取号':'已完成'}</span></strong>
 				</div>
 				&nbsp; &nbsp; &nbsp;
@@ -490,7 +491,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="bottom">
   <div class="bottom">
     <div class="bottom_left">
-      <p>湖南省统一预约挂号服务平台</p>
+      <p>301医院统一预约挂号服务平台</p>
       <p>
         <a href="http://www.hnyygh.com/getArticleList_guide.action?articleId=About_us&amp;channelId=105&amp;contentPath=" target="_parent" style="white-space: nowrap; width: 50px">关于我们</a>
         |
@@ -500,7 +501,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         |
         <a href="http://www.hnyygh.com/getArticleList_guide.action?articleId=Contact_us&amp;channelId=105&amp;contentPath=" target="_parent" style="white-space: nowrap; width: 50px">联系我们</a>
       </p>
-      <p>技术支持：湖南凯歌医疗信息技术有限公司</p>
+      <p>技术支持：湖南三零一医疗信息技术有限公司</p>
       <p>联系电话：<font color="red"><strong>400 9918 580</strong></font> &nbsp;&nbsp;&nbsp;&nbsp; 湘ICP备14005311号-1</p>
     </div>
    <!-- <div class="bottom_right">
